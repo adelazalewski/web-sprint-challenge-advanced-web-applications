@@ -14,6 +14,9 @@ body,
   font-family: "Montserrat", sans-serif;
   text-align: center;
   display: flex;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   svg {
     height: 100%;
