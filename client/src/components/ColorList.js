@@ -7,7 +7,7 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 const initialColor = {
   color: "",
   code: { hex: "" },
-  // id: Date.now()
+  
 };
 
 const ColorList = ({ colors, updateColors }) => {
@@ -37,15 +37,11 @@ const deleteMessage = color => {
     .then(res => {
       console.log("editing res: ", res)
       setColorToEdit(res.data);
-      
-      
     })
     .catch(err => console.log(err));
   };
   
-  // const {push} = useHistory();
-  // const history = useHistory();
-  // console.log(history);
+  
 
   const deleteColor = color => {
     //console.log(color.id);
@@ -53,7 +49,7 @@ const deleteMessage = color => {
     axiosWithAuth().delete(`http://localhost:5000/api/colors/${color.id}`)
     .then(res => {
       console.log("delete res: ", res)
-       setSuccessMessage("The color was deleted");
+       updateColors(colors.filter(c => c.id !== color.id));
     
     })
     .catch(err => console.log(err))
@@ -63,13 +59,13 @@ useEffect(() => {
   
   axiosWithAuth().get(`http://localhost:5000/api/colors`)
         .then((res) => {
-            console.log("useEffcet fetch item response: ", res);
-            
+            //console.log("useEffcet fetch item response: ", res);
+            updateColors(res.data);
           })
           .catch((err) => {
             console.log(err)
           })
-  }, [colorToEdit, colors]);
+  }, [colorToEdit]);
 
 //ADD COLOR FORM
 const [newColor, setNewColor] = useState(initialColor);
@@ -95,7 +91,6 @@ const submit = (e) => {
                     e.stopPropagation();
                     deleteColor(color);
                     
-                   
                   }
 
                 }>

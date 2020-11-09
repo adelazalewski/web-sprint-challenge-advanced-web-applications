@@ -34,7 +34,7 @@ const Login = () => {
   return (
     <>
       <h1>Welcome to the Bubble App!</h1>
-      <form onSubmit={submit}>
+      <form id="login-form" onSubmit={submit}>
         <label htmlFor="username">Username:</label>
         <input name="username" type="text" placeholder="Lambda School" value={user.username} onChange={handleChange} />
         <label htmlFor="password">Password:</label>
